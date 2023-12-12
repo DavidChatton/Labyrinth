@@ -24,13 +24,13 @@
         let yperso = 1; //postition initial du personnage sur l'axe Y
         
 		//tableau à double entrée représentant votre labyrinthe, vous pouvez le modifier pour comprendre le fonctionnement
-        let labyCoordinate = [[m,m,m,m,m,m,m,m,m,m],
-                    [m,p,m,b,b,b,b,b,b,m],
-                    [m,b,m,b,m,m,m,b,m,m],
-                    [m,b,m,b,m,b,m,b,b,m],
-                    [m,b,b,b,m,b,m,m,b,m],
-                    [m,b,m,b,m,b,b,b,b,f],
-                    [m,m,m,m,m,m,m,m,m,m]];
+        let labyCoordinate =[[m,m,m,m,m,m,m,m,m,m],
+                             [m,p,m,b,b,b,b,b,b,m],
+                             [m,b,m,b,m,m,m,b,m,m],
+                             [m,b,m,b,m,b,m,b,b,m],
+                             [m,b,b,b,m,b,m,m,b,m],
+                             [m,b,m,b,m,b,b,b,b,f],
+                             [m,m,m,m,m,m,m,m,m,m]];
       
 
          
@@ -79,7 +79,53 @@
             html+="</table>";
             elementLaby.innerHTML = html;
         }
+        function down() {
+            if (labyCoordinate[xperso + 1][yperso] == b && labyCoordinate[xperso + 1][yperso] != m ) {
+                labyCoordinate[xperso][yperso] = b;
+                labyCoordinate[xperso + 1][yperso] = p;
+                xperso += 1;
+                affichage()
+            }   
+        }
 
+        function up() {
+            if (labyCoordinate[xperso - 1][yperso] == b && labyCoordinate   [xperso - 1][yperso] != m ) {
+                labyCoordinate[xperso][yperso] = b;
+                labyCoordinate[xperso - 1][yperso] = p;
+                xperso -= 1;
+                affichage()
+            }
+            
+            win()
+        }
+
+        function right() {
+            if (labyCoordinate[xperso][yperso+1] == b && labyCoordinate   [xperso][yperso+1] != m ) {
+                labyCoordinate[xperso][yperso] = b;
+                labyCoordinate[xperso][yperso+1] = p;
+                yperso += 1; 
+                affichage()
+            }
+
+            else if(labyCoordinate[xperso][yperso+1] == f){
+                labyCoordinate[xperso][yperso] = b;
+                labyCoordinate[xperso][yperso+1] = p;
+                yperso += 1;
+                affichage()
+                alert("Félicitation vous avez gagner")
+            } 
+           
+        }
+
+        function left() {
+            if (labyCoordinate[xperso][yperso-1] == b && labyCoordinate[xperso][yperso-1] != m ) {
+                labyCoordinate[xperso][yperso] = b;
+                labyCoordinate[xperso][yperso-1] = p;
+                yperso -= 1;
+                affichage()
+            }
+        }
+      
         
 
 
@@ -92,9 +138,17 @@
  
         </div>
 
-    <input type="button" value="GO" onclick="affichage();"><br/><BR><BR>
+    <input type="button" value="GO" onclick="affichage();"><br/><BR><BR> 
+    
+        <!-- ajouter vos boutons de déplacement ici -->
+    <input type="button" id="right"  value="right" onclick="right();">
+    <input type="button" value="left" onclick="left();">
+    <input type="button" value="top" onclick="up();">
+    <input type="button" value="down" onclick="down();">
+   
 
-    <!-- ajouter vos boutons de déplacement ici -->
+
+   
 
 
  
