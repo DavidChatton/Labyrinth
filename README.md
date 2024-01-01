@@ -33,8 +33,4 @@ $ git clone https://github.com/DavidChatton/Labyrinth.git
 
 # Access
 $ cd Labyrinth
-
-# Run the project
-$ make all
-
 ```
